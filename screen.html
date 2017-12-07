@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="author" content="Daniel Gillo">
+    <meta name="description" content="A colorful website to check if your screen has dead pixels.">
+    <meta name="keywords" content="dead, pixel, checker">
+    <link rel="icon" href="data:image/gif;base64,R0lGODlhEAAQAPEAAAAAAAD/AAAA//8AACH/C05FVFNDQVBFMi4wAwEAAAAh+QQFkAEAACwAAAAAEAAQAAACOYSPecMWb4RcDbwQp2HDQSAJVGd94ehhoAZwaSZu1QWjpXrKJL3G7WxiuW413atn4+V+u6BPAQUUAAAh+QQFCAABACwHAAEAAwAOAAACBYSPqctaACH5BAUFAAAALAcAAQADAA4AAAIFjI+py1oAIfkEBQoAAQAsBwABAAMADgAAAgWEj6nLWgA7" type="image/gif" sizes="16x16">
+    <title>Dead Pixel Checker</title>
+    <style>
+        body {
+            background-color: white;
+        }
+    </style>
+    <script>
+        var colors = ["red", "lime", "blue", "yellow", "aqua", "fuchsia", "black", "grey", "white"];
+        var NO_COLORS = index = colors.length - 1;
+        function start() {
+            alert("Enter full screen mode on your browser by pressing F11.\nPress the arrow keys, or click the window to cycle through the colors.");
+            window.addEventListener("keyup", function (event) {press(event)});
+            window.addEventListener("click", function (event) {press(event)});
+        }
+        function press(e) {
+            var key = e.keyCode;
+            if (key == 40 || key == 37) {
+                index -= 1;
+            }
+            else if (key === undefined || key > 31 && key < 90) {
+                index += 1;
+            }
+            else {
+                return 0;
+            }
+            if (index > NO_COLORS){
+                index = 0;
+            }
+            else if (index < 0){
+                index = NO_COLORS;
+            }
+            console.log("key=" + key + "\tcolor="+ colors[index]);
+            document.body.style.backgroundColor = colors[index];
+        }
+    </script>
+</head>
+<body onload="start()">
+</body>
+</html>
